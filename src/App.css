@@ -1,3 +1,28 @@
-body{
-  background-color:red;
+*{
+  margin:0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* Header */ 
+.header{
+  background-color: #ab2a19;
+  min-width: 100vw;
+  height:100px;
+  color:white;
+  padding:25px;
+}
+
+/* Form */
+.form{
+
+}
+
+.wtf{
+  display:flex;
+  justify-content: space-between;
+  border: 1px solid #3ad886;
+  padding:10px;
+  margin: 10px;
 }

@@ -59,7 +59,7 @@ class Form extends Component {
   render() {
     const {imageURL, productName, price} = this.state;
     return (
-      <div>
+      <div className="form">
         <h2>Image URL: </h2>
         <input value={imageURL} onChange={this.handleImageChange}/>
         <h2>Product Name:</h2>

@@ -19,7 +19,7 @@ function Dashboard  (props) {
   })
  
   return (
-    <div>
+    <div className="wtf">
       {mappedItems}
     </div>
   )
