@@ -4,11 +4,12 @@ import React from 'react'
 
   
     return (
-      <div>
-        <h1>Product</h1>
-        {props.name}
-        {props.image}
-        {props.price}
+      <div fuckyou={props.id} really="true">
+        <h3>{props.name}</h3>
+        
+        <img src={props.image} />
+        <p>Price: {props.price}</p>
+        <button onClick={props.deleteProduct}>Delete</button>
 
       </div>
     )

@@ -14,10 +14,20 @@ class App extends Component{
         inventoryList: []
   }
   this.updateInventory = this.updateInventory.bind(this);
-
+  this.deleteProduct = this.deleteProduct.bind(this);
+  
 }
 componentDidMount(){
   this.updateInventory();
+}
+deleteProduct(click){
+  console.log("click.target.parentElement", click.target.parentElement);
+  const id = 5;
+  Axios
+    .delete(`http://localhost:5432/api/product/${id}`)
+    .then( (res) => {console.log("res", res)})
+    .catch( (err) => {console.log("err", err)});
+  
 }
 updateInventory() {
   Axios
@@ -32,8 +42,11 @@ updateInventory() {
         return (
         <div>
             <Header/>
-            <Dashboard inventoryList={this.state.inventoryList}>
-            </Dashboard>
+            <Dashboard
+              inventoryList={this.state.inventoryList}
+              updateInventory={this.updateInventory}
+              deleteProduct={this.deleteProduct}
+              />
             <Form updateInventory={this.updateInventory}/>
         </div>
     );

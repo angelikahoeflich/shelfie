@@ -17,5 +17,14 @@ module.exports = {
       })
       .catch((err) => res.status(500).send(err));
   },
+  deleteProduct: (req, res) => {
+    const db = req.app.get('db');
+    const {id} = req.params;
+    db.new_product(+id)
+      .then(() => {
+        res.sendStatus(201)
+      })
+      .catch((err) => res.status(500).send(err));
+  },
   
 }
