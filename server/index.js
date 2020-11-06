@@ -3,6 +3,7 @@ const express = require('express');
 const massive = require('massive');
 const app = express();
 app.use(express.json());
+const ctrl = require('./controller');
 const {SERVER_PORT, CONNECTION_STRING} = process.env;
 
 massive({
@@ -17,6 +18,8 @@ massive({
 }).catch((err) => console.log(err));
 
 //endpoints
+
+app.get('/api/inventory', ctrl.getProducts);
 
 
 app.listen(SERVER_PORT, () => console.log(`listening on da port ${SERVER_PORT}`));
