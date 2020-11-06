@@ -12,10 +12,11 @@ massive({
     rejectUnauthorized:false
   }
 }).then((db) => {
-  app.set('db', db);
-});
+  app.set('db', db)
+  console.log('db connected');
+}).catch((err) => console.log(err));
 
 //endpoints
 
 
-app.listen(SERVER_PORT, console.log('listening on da port'));
+app.listen(SERVER_PORT, () => console.log(`listening on da port ${SERVER_PORT}`));
