@@ -5,9 +5,9 @@ function Dashboard(props) {
   const mappedItems = props.inventoryList.map( (product) => {
     console.log(product)
     return (
-      <Product 
-        name={product.product_name}
-        imageURL={product.imageURL}
+      <Product key={product.id}
+        name={product.name}
+        imageURL={product.img}
         price={product.price}
       />
     )
