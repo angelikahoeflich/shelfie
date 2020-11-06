@@ -42,7 +42,7 @@ updateInventory() {
         return (
         <div>
             <Header/>
-            <Dashboard 
+            <Dashboard className="wtf-2" 
               inventoryList={this.state.inventoryList}
               updateInventory={this.updateInventory}
               deleteProduct={this.deleteProduct}
