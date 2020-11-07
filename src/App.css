@@ -12,6 +12,8 @@
   height:100px;
   color:white;
   padding:25px;
+  flex-basis: 100%;
+  
 }
 
 /* Form */
@@ -19,14 +21,22 @@
 
 }
 
-.wtf{
+/* .wtf{
   display:flex;
   justify-content: space-between;
   border: 1px solid #3ad886;
   padding:10px;
   margin: 10px;
-}
+}*/
 
 .wtf-2{
+  flex-grow:1;
+} 
+
+.flex-errythang{
   display:flex;
+}
+
+.wtf-3{
+  flex-grow: 1;
 }

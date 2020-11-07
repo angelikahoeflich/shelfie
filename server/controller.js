@@ -20,7 +20,7 @@ module.exports = {
   deleteProduct: (req, res) => {
     const db = req.app.get('db');
     const {id} = req.params;
-    db.new_product(+id)
+    db.delete_products(+id)
       .then(() => {
         res.sendStatus(201)
       })

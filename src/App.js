@@ -21,11 +21,14 @@ componentDidMount(){
   this.updateInventory();
 }
 deleteProduct(click){
-  console.log("click.target.parentElement", click.target.parentElement);
-  const id = 5;
+  const product = click.target.parentElement;
+  const id = product.getAttribute("fuckyou");
   Axios
     .delete(`http://localhost:5432/api/product/${id}`)
-    .then( (res) => {console.log("res", res)})
+    .then( (res) => {
+      console.log("res", res);
+      this.updateInventory();
+    })
     .catch( (err) => {console.log("err", err)});
   
 }
@@ -42,12 +45,14 @@ updateInventory() {
         return (
         <div>
             <Header/>
+            <div className="flex-errythang">
             <Dashboard className="wtf-2" 
               inventoryList={this.state.inventoryList}
               updateInventory={this.updateInventory}
               deleteProduct={this.deleteProduct}
               />
-            <Form updateInventory={this.updateInventory}/>
+            <Form className="wtf-3" updateInventory={this.updateInventory}/>
+            </div>
         </div>
     );
   }
