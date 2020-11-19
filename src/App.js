@@ -34,6 +34,7 @@ deleteProduct(click){
 }
 
 handleEdit(){
+  
   Axios.put('api/product/:id')
   .then((res)=>{
     this.setState({
