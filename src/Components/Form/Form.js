@@ -8,9 +8,11 @@ class Form extends Component {
     this.state = {
       imageURL: '',
       productName: '',
-      price: 0
+      price: 0,
+      selected: props.selected
     };
 
+    console.log(props.selected)
     this.handleCancel = this.handleCancel.bind(this);
     this.handleImageChange = this.handleImageChange.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
@@ -21,11 +23,25 @@ class Form extends Component {
     console.log('wtf')
   }
 
+  componentDidUpdate(prevProps){
+    if(prevProps.selected != this.props.selected){
+      this.setState({
+        selected: this.props.selected
+      })
+    }
+  }
+
   handleCancel(click){
     this.setState({
       imageURL: '',
       productName: '',
       price: 0
+    })
+  }
+
+  handleEdit(click){
+    this.setState({
+
     })
   }
 
@@ -59,6 +75,7 @@ class Form extends Component {
   render() {
     const {imageURL, productName, price} = this.state;
     return (
+      <div>
       <div className="form">
         <h2>Image URL: </h2>
         <input value={imageURL} onChange={this.handleImageChange}/>
@@ -67,8 +84,15 @@ class Form extends Component {
         <h2>Price:</h2>
         <input value={price} onChange={this.handlePriceChange}/>
         <button onClick={this.handleCancel}>Cancel</button>
-        <button onClick={this.submitNewProduct}>Add</button>
+        </div>
+        <div>
+        {this.state.selected ? <button>Save Changes</button> :
+        
+        <button onClick={this.submitNewProduct}>Add to inventory</button>
+  }
       </div>
+      </div>
+
     )
   }
 }

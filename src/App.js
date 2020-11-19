@@ -3,7 +3,6 @@ import './App.css';
 import Axios from 'axios';
 import Header from './Components/Header/Header';
 import Dashboard from './Components/Dashboard/Dashboard';
-import Product from './Components/Product/Product';
 import Form from './Components/Form/Form';
 
 class App extends Component{
@@ -11,7 +10,8 @@ class App extends Component{
     super()
 
     this.state = {
-        inventoryList: []
+        inventoryList: [],
+        selectedProduct: null
   }
   this.updateInventory = this.updateInventory.bind(this);
   this.deleteProduct = this.deleteProduct.bind(this);
@@ -32,6 +32,11 @@ deleteProduct(click){
     .catch( (err) => {console.log("err", err)});
   
 }
+
+handleEdit(){
+  Axios.put('/')
+}
+
 updateInventory() {
   Axios
   .get("http://localhost:5432/api/inventory")
@@ -51,11 +56,13 @@ updateInventory() {
               updateInventory={this.updateInventory}
               deleteProduct={this.deleteProduct}
               />
-            <Form className="wtf-3" updateInventory={this.updateInventory}/>
+            <Form 
+            selected={this.state.selectedProduct} className="wtf-3" 
+            updateInventory={this.updateInventory}/>
             </div>
         </div>
     );
-  }
+}
 }
 
 export default App;

@@ -10,6 +10,7 @@ import React from 'react'
         <img src={props.imageURL} />
         <p>Price: {props.price}</p>
         <button onClick={props.deleteProduct}>Delete</button>
+        <button onClick={}>Edit info</button>
 
       </div>
     )
