@@ -34,7 +34,12 @@ deleteProduct(click){
 }
 
 handleEdit(){
-  Axios.put('/')
+  Axios.put('api/product/:id')
+  .then((res)=>{
+    this.setState({
+      selected: this.state.selectedProduct
+    })
+  }).catch((err) => {console.log("err", err)})
 }
 
 updateInventory() {
@@ -57,7 +62,9 @@ updateInventory() {
               deleteProduct={this.deleteProduct}
               />
             <Form 
-            selected={this.state.selectedProduct} className="wtf-3" 
+            selected={this.state.selectedProduct} 
+            edit={handleEdit} 
+            className="wtf-3" 
             updateInventory={this.updateInventory}/>
             </div>
         </div>
