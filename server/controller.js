@@ -30,7 +30,8 @@ module.exports = {
   editProduct: (req, res) => {
     const db = req.app.get('db');
     const {id} = req.params;
-    db.edit_product(+id)
+    const {name, price, img} = req.body;
+    db.edit_product([name, +price, img, +id])
       .then(() => {
         res.sendStatus(200)
       })

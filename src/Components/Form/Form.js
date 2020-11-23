@@ -18,6 +18,7 @@ class Form extends Component {
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handlePriceChange = this.handlePriceChange.bind(this);
     this.submitNewProduct = this.submitNewProduct.bind(this);
+    this.updateProduct = this.updateProduct.bind(this);
     this.updateInventory = props.updateInventory;
    
     console.log('wtf')
@@ -35,15 +36,12 @@ class Form extends Component {
     this.setState({
       imageURL: '',
       productName: '',
-      price: 0
+      price: 0,
+      selected: null
     })
   }
 
-  handleEdit(click){
-    this.setState({
-
-    })
-  }
+  
 
   handleImageChange(event){
     this.setState({
@@ -60,6 +58,7 @@ class Form extends Component {
       price: event.target.value
     })
   }
+
   submitNewProduct(event){
     const {productName:name, price, imageURL:img} = this.state;
     console.log(name, price, img);
@@ -70,6 +69,20 @@ class Form extends Component {
       }).catch(err => console.log(err))
 
   }
+  updateProduct(event) {
+    console.log(`You clicked update while ${this.state.selected} was selected`);
+
+    Axios.put(`http://localhost:5432/api/product/${this.state.selected}`, {
+      name: this.state.productName,
+      img: this.state.imageURL,
+      price: this.state.price
+    })
+    .then((res)=>{
+      console.log("Got response from express:", res);
+      this.updateInventory();
+    }).catch((err) => {console.log("err", err)})
+
+  }
 
 
   render() {
@@ -77,6 +90,9 @@ class Form extends Component {
     return (
       <div>
       <div className="form">
+        {this.state.selected &&
+          <h2>selected product:{this.state.selected}</h2>
+        }
         <h2>Image URL: </h2>
         <input value={imageURL} onChange={this.handleImageChange}/>
         <h2>Product Name:</h2>
@@ -86,10 +102,9 @@ class Form extends Component {
         <button onClick={this.handleCancel}>Cancel</button>
         </div>
         <div>
-        {this.state.selected ? <button>Save Changes</button> :
-        
-        <button onClick={this.submitNewProduct}>Add to inventory</button>
-  }
+        {this.state.selected && <button onClick={this.updateProduct}>Save Changes</button> }
+        {!this.state.selected && <button onClick={this.submitNewProduct}>Add to inventory</button>}
+  
       </div>
       </div>
 

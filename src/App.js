@@ -15,6 +15,7 @@ class App extends Component{
   }
   this.updateInventory = this.updateInventory.bind(this);
   this.deleteProduct = this.deleteProduct.bind(this);
+  this.handleEditButton = this.handleEditButton.bind(this);
   
 }
 componentDidMount(){
@@ -33,15 +34,12 @@ deleteProduct(click){
   
 }
 
-handleEdit(){
-  
-  Axios.put('api/product/:id')
-  .then((res)=>{
-    this.setState({
-      selected: this.state.selectedProduct
-    })
-  }).catch((err) => {console.log("err", err)})
+handleEditButton(click){
+  const clickedProduct = click.target.parentElement.getAttribute("fuckyou");
+  console.log("You clicked product ID:", clickedProduct);
+  this.setState({selectedProduct: +clickedProduct});
 }
+
 
 updateInventory() {
   Axios
@@ -61,10 +59,11 @@ updateInventory() {
               inventoryList={this.state.inventoryList}
               updateInventory={this.updateInventory}
               deleteProduct={this.deleteProduct}
+              handleEditButton={this.handleEditButton}
               />
             <Form 
             selected={this.state.selectedProduct} 
-            edit={handleEdit} 
+            edit={this.handleEdit} 
             className="wtf-3" 
             updateInventory={this.updateInventory}/>
             </div>

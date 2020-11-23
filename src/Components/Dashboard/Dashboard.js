@@ -12,7 +12,7 @@ function Dashboard  (props) {
         name={product.name}
         imageURL={product.img}
         price={product.price}
-
+        handleEditButton={props.handleEditButton}
         deleteProduct={props.deleteProduct}
       />
     )

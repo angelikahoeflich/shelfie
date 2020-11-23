@@ -1,2 +1,5 @@
 UPDATE products
-WHERE name = $1, price = $2, img = $3
+SET name = $1, price = $2, img = $3
+WHERE id = $4
+
+RETURNING *
